@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Clés RSA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2b6cb0;
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .step {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .step .arrow {
+            font-size: 24px;
+            margin: 0 10px;
+            color: #2b6cb0;
+        }
+        .step p {
+            flex: 1;
+        }
+        .highlight {
+            background-color: #e3f2fd;
+            padding: 10px;
+            border-left: 4px solid #2b6cb0;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #2b6cb0;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1a4a75;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MÉCANISME DE SIGNATURE</h1>
+
+    <div class="content">
+        <h2>Comprendre la Signature Numérique</h2>
+        <div class="step">
+            <span class="arrow">➜</span>
+            <p><strong>Étape 1 :</strong> Génération des clés RSA. Une paire de clés est créée : une clé publique et une clé privée.</p>
+        </div>
+        <div class="step">
+            <span class="arrow">➜</span>
+            <p><strong>Étape 2 :</strong> Le fichier ou le message est haché à l'aide de l'algorithme <strong>SHA-256</strong>.</p>
+        </div>
+        <div class="step">
+            <span class="arrow">➜</span>
+            <p><strong>Étape 3 :</strong> Le hash généré est signé avec la clé privée de l'expéditeur.</p>
+        </div>
+        <div class="step">
+            <span class="arrow">➜</span>
+            <p><strong>Étape 4 :</strong> La signature et le fichier original sont envoyés au destinataire.</p>
+        </div>
+        <div class="step">
+            <span class="arrow">➜</span>
+            <p><strong>Étape 5 :</strong> Le destinataire vérifie la signature avec la clé publique de l'expéditeur et le hash recalculé.</p>
+        </div>
+
+        <h2>Pourquoi RSA 2048 bits est-il puissant ?</h2>
+        <div class="highlight">
+            <p>RSA 2048 bits repose sur la difficulté de factoriser de très grands nombres. Voici pourquoi il est fiable :</p>
+            <ul>
+                <li><strong>Robustesse mathématique :</strong> Il est presque impossible, avec les technologies actuelles, de factoriser un nombre de 2048 bits en un temps raisonnable.</li>
+                <li><strong>Standard industriel :</strong> RSA 2048 est recommandé par les autorités comme NIST pour les communications sécurisées.</li>
+                <li><strong>Protection à long terme :</strong> Avec RSA 2048 bits, la sécurité est garantie pendant des décennies contre les attaques par force brute.</li>
+                <li><strong>Confiance des utilisateurs :</strong> La robustesse de RSA 2048 assure aux utilisateurs que leurs données et signatures sont à l'abri des piratages modernes.</li>
+            </ul>
+        </div>
+
+        <h2>Pourquoi utiliser SHA-256 pour les signatures ?</h2>
+        <div class="highlight">
+            <p>SHA-256 est un algorithme de hachage sécurisé qui garantit l'intégrité des données. Voici ses avantages :</p>
+            <ul>
+                <li><strong>Résistance aux collisions :</strong> SHA-256 rend pratiquement impossible de trouver deux fichiers ayant le même hash.</li>
+                <li><strong>Efficacité :</strong> SHA-256 génère un hash fixe de 256 bits, rapide à calculer et sécurisé.</li>
+                <li><strong>Standard reconnu :</strong> Il est largement utilisé dans les systèmes modernes et recommandé pour des applications critiques comme les signatures numériques.</li>
+                <li><strong>Couche supplémentaire de sécurité :</strong> En signant le hash plutôt que le fichier complet, le processus est plus rapide et tout aussi sûr.</li>
+            </ul>
+        </div>
+
+        <p style="text-align: center; font-style: italic;">En combinant RSA 2048 et SHA-256, nous garantissons une signature robuste, sécurisée et conforme aux normes actuelles de cryptographie.</p>
+
+        <form action="generate_keys_action.php" method="POST">
+            <button type="submit" name="generate" value="true">Générer les Clés</button>
+        </form>
+    </div>
+
+</body>
+</html>
